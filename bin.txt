@@ -124,8 +124,83 @@ public class LibraryDemo {
 
         library.borrowBook(john, "The Great Gatsby", "F. Scott Fitzgerald");
         library.borrowBook(alice, "1984", "George Orwell");
-        library.returnBook(john, "The Great Gatsby", "F. Scott Fitzgerald");
+        library.returnBook(john, "The Great Gatsby", "F. Scott Fitzgerald")
+
+
 
         library.displayAvailableBooks();
+    }
+}
+
+
+
+*********** Question 02 ******** mekth hariyt we nha bn rubn une nha un=ba run kra blpn
+save krpn TimeDemo.java
+
+class Time {
+    private int hours;
+    private int minutes;
+    private int seconds;
+
+    public Time(int hours, int minutes, int seconds) {
+        this.hours = hours;
+        this.minutes = minutes;
+        this.seconds = seconds;
+    }
+
+    public void addTime(int additionalHours, int additionalMinutes, int additionalSeconds) {
+        seconds += additionalSeconds;
+        minutes += additionalMinutes;
+        hours += additionalHours;
+
+        if (seconds >= 60) {
+            minutes += seconds / 60;
+            seconds %= 60;
+        }
+
+        if (minutes >= 60) {
+            hours += minutes / 60;
+            minutes %= 60;
+        }
+    }
+
+    public void subtractTime(int subtractedHours, int subtractedMinutes, int subtractedSeconds) {
+        seconds -= subtractedSeconds;
+        minutes -= subtractedMinutes;
+        hours -= subtractedHours;
+
+        if (seconds < 0) {
+            minutes += (seconds / -60);
+            seconds = (seconds % 60) + 60;
+        }
+
+        if (minutes < 0) {
+            hours += (minutes / -60);
+            minutes = (minutes % 60) + 60;
+        }
+
+        if (hours < 0) {
+            hours = 0;
+            minutes = 0;
+            seconds = 0;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%02d:%02d:%02d", hours, minutes, seconds);
+    }
+}
+
+public class TimeDemo {
+    public static void main(String[] args) {
+        Time currentTime = new Time(10, 30, 45);
+        System.out.println("Initial Time: " + currentTime);
+
+        currentTime.addTime(2, 15, 20);
+        System.out.println("Time after adding: " + currentTime);
+
+        currentTime.subtractTime(1, 10, 15);
+        System.out.println("Final Time after subtracting: " + currentTime);
     }
 }
